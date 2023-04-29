@@ -15,7 +15,7 @@ const resolvers = {
 	Query: {
 		user: async (_, { id, username }) => {
 			const foundUser = await User.findOne({
-				$or: [{ _id: id }, { username }],
+				$or: [{ _id: id }, { username: username }],
 			});
 
 			if (!foundUser) {
@@ -26,21 +26,18 @@ const resolvers = {
 		},
 	},
 	Mutation: {
-		createUser: async (parent, args) => {
-			const user = await User.create(args);
+		createUser: async (parent, { username, email, password }) => {
+			const user = await User.create({ username, email, password });
 
-			if (!user) {
-				throw new Error('Something is wrong!');
-			}
 			const token = signToken(user);
 			return { token, user };
 		},
 	},
-	loginUser: async (parent, args) => {
-		const user = await User.findOne(args);
+	loginUser: async (parent, { email, password }) => {
+		const user = await User.findOne({ email });
 
 		if (!user) {
-			throw new AuthenticationError('No user found with that email/username!');
+			throw new AuthenticationError('No user found with that email!');
 		}
 
 		const correctPw = await user.isCorrectPassword(password);
@@ -74,3 +71,5 @@ const resolvers = {
 		return updatedUser;
 	},
 };
+
+module.exports = resolvers;
