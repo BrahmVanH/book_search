@@ -31,12 +31,14 @@ const SearchBooks = () => {
 
 		try {
 			const response = await searchGoogleBooks(searchInput);
+			console.log(response.data);
 
-			if (!response.ok) {
+
+			if (response.status != 200) {
 				throw new Error('something went wrong!');
 			}
 
-			const { items } = await response.json();
+			const { items } = await response.data;
 
 			const bookData = items.map((book) => ({
 				bookId: book.id,
