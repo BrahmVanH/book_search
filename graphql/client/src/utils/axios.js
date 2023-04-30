@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-const url = `/books/v1/volumes?q=${query}`;
+const url = `/books/v1/volumes?q=`;
 const baseURL = 'https://www.googleapis.com';
 
-const searchGoogleBooks = (query) => {
-	axios.get(`${baseURL}${url}`);
+export const searchGoogleBooks = (query) => {
+	axios.get(`${baseURL}${url}${query}`);
 };
