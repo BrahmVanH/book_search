@@ -21,7 +21,7 @@ export const LOGIN_USER = gql`
       password
     }
   }
-`
+`;
 const SAVE_BOOK = gql`
   mutation saveBook(bookId: String!) {
     saveBook(bookId: $bookId) {
@@ -35,16 +35,43 @@ const SAVE_BOOK = gql`
       }
     }
   }
-`
+`;
 
-export const saveBook = (bookData, token) => {
-  return client.mutation({
-    mutation: SAVE_BOOK,
-    context: {
-      headers: {
-        authorization: `Bearer ${token}`,
-      },
-    },
-  });
+export const saveBook = (bookId, token) => {
+	return client.mutation({
+		mutation: SAVE_BOOK,
+		variables: { bookId },
+		context: {
+			headers: {
+				authorization: `Bearer ${token}`,
+			},
+		},
+	});
 };
 
+const DELETE_BOOK = gql`
+  mutation deleteBook(bookId: String!) {
+    deleteBook(bookId: $bookId) {
+      user {
+        username
+        savedBooks {
+          book {
+            title
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const deleteBook = (bookId, token) => {
+	return client.mutation({
+		mutation: DELETE_BOOK,
+		variables: { bookId },
+		context: {
+			headers: {
+				authorization: `Bearer ${token}`,
+			},
+		},
+	});
+};
