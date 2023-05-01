@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Container, Col, Form, Button, Card, Row } from 'react-bootstrap';
 
 import Auth from '../utils/auth';
-import { saveBook } from '../utils/mutations';
+import { SAVE_BOOK } from '../utils/mutations';
 import { searchGoogleBooks } from '../utils/axios';
 import { saveBookIds, getSavedBookIds } from '../utils/localStorage';
 
@@ -11,6 +11,8 @@ const SearchBooks = () => {
 	const [searchedBooks, setSearchedBooks] = useState([]);
 	// create state for holding our search field data
 	const [searchInput, setSearchInput] = useState('');
+	// Create a saveBook object to execute the SAVE_BOOK mutation
+	const [saveBook, { error }] = useMutation(SAVE_BOOK);
 
 	// create state to hold saved bookId values
 	const [savedBookIds, setSavedBookIds] = useState(getSavedBookIds());
