@@ -9,7 +9,7 @@
 // deleteBook '/books/:bookId'
 const { AuthenticationError } = require('apollo-server-express');
 const { User } = require('../models');
-const { signToken } = require('../../../restful/server/utils/auth');
+const { signToken } = require('../utils/auth');
 
 const resolvers = {
 	Query: {
@@ -32,43 +32,44 @@ const resolvers = {
 			const token = signToken(user);
 			return { token, user };
 		},
-	},
-	loginUser: async (parent, { email, password }) => {
-		const user = await User.findOne({ email });
 
-		if (!user) {
-			throw new AuthenticationError('No user found with that email!');
-		}
+		loginUser: async (parent, { email, password }) => {
+			const user = await User.findOne({ email });
 
-		const correctPw = await user.isCorrectPassword(password);
+			if (!user) {
+				throw new AuthenticationError('No user found with that email!');
+			}
 
-		if (!correctPw) {
-			throw new AuthenticationError('Incorrect credentials');
-		}
+			const correctPw = await user.isCorrectPassword(password);
 
-		const token = signToken(user);
-		return { token, user };
-	},
+			if (!correctPw) {
+				throw new AuthenticationError('Incorrect credentials');
+			}
 
-	saveBook: async (parent, { user, bookId }) => {
-		const updatedUser = await User.findOneAndUpdate(
-			{ user: user._id },
-			{ $addToSet: { savedBooks: bookId } },
-			{ new: true, runValidators: true }
-		);
-		return updatedUser;
-	},
+			const token = signToken(user);
+			return { token, user };
+		},
 
-	deleteBook: async (parent, { user, bookId }) => {
-		const updatedUser = await User.findOneAndUpdate(
-			{ _id: user._id },
-			{ $pull: { savedBooks: { bookId: bookId } } },
-			{ new: true }
-		);
-		if (!updatedUser) {
-			throw new Error("Can't find user with that ID!");
-		}
-		return updatedUser;
+		saveBook: async (parent, { user, bookId }) => {
+			const updatedUser = await User.findOneAndUpdate(
+				{ user: user._id },
+				{ $addToSet: { savedBooks: bookId } },
+				{ new: true, runValidators: true }
+			);
+			return updatedUser;
+		},
+
+		deleteBook: async (parent, { user, bookId }) => {
+			const updatedUser = await User.findOneAndUpdate(
+				{ _id: user._id },
+				{ $pull: { savedBooks: { bookId: bookId } } },
+				{ new: true }
+			);
+			if (!updatedUser) {
+				throw new Error("Can't find user with that ID!");
+			}
+			return updatedUser;
+		},
 	},
 };
 
