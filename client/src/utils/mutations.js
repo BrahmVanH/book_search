@@ -1,5 +1,4 @@
 import { gql } from '@apollo/client';
-import client from '../App';
 
 export const CREATE_USER = gql`
 	mutation createUser($username: String!, $email: String!, $password: String!) {
@@ -49,18 +48,6 @@ export const SAVE_BOOK = gql`
 	}
 `;
 
-// export const saveBook = (bookId, token) => {
-// 	return client.mutation({
-// 		mutation: SAVE_BOOK,
-// 		variables: { bookId },
-// 		context: {
-// 			headers: {
-// 				authorization: `Bearer ${token}`,
-// 			},
-// 		},
-// 	});
-// };
-
 export const DELETE_BOOK = gql`
 	mutation deleteBook($bookId: String!) {
 		deleteBook(bookId: $bookId) {
@@ -80,6 +67,17 @@ export const DELETE_BOOK = gql`
 		}
 	}
 `;
+// export const saveBook = (bookId, token) => {
+// 	return client.mutation({
+// 		mutation: SAVE_BOOK,
+// 		variables: { bookId },
+// 		context: {
+// 			headers: {
+// 				authorization: `Bearer ${token}`,
+// 			},
+// 		},
+// 	});
+// };
 
 // export const deleteBook = (bookId, token) => {
 // 	return client.mutation({

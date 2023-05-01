@@ -24,6 +24,8 @@ const SearchBooks = () => {
 		return () => saveBookIds(savedBookIds);
 	});
 
+
+
 	// create method to search for books and set state on form submit
 	const handleFormSubmit = async (event) => {
 		event.preventDefault();
@@ -36,7 +38,7 @@ const SearchBooks = () => {
 			const response = await searchGoogleBooks(searchInput);
 			console.log(response.data);
 
-			if (response.status != 200) {
+			if (response.status !== 200) {
 				throw new Error('something went wrong!');
 			}
 
