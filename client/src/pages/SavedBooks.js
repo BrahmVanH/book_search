@@ -2,14 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { Container, Card, Button, Row, Col } from 'react-bootstrap';
 
 import { getMe } from '../utils/queries';
-import { deleteBook } from '../utils/mutations';
+import { DELETE_BOOK } from '../utils/mutations';
 import Auth from '../utils/auth';
 import { removeBookId } from '../utils/localStorage';
+import { useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 
 
 
 const SavedBooks = () => {
 	const [userData, setUserData] = useState({});
+	const [ deleteBook, { error }] = useMutation(DELETE_BOOK);
 
 	// use this to determine if `useEffect()` hook needs to run again
 	const userDataLength = Object.keys(userData).length;
@@ -17,7 +20,6 @@ const SavedBooks = () => {
 	useEffect(() => {
 		const getUserData = async () => {
 			try {
-				const token = Auth.loggedIn() ? Auth.getToken() : null;
 
 				if (!token) {
 					return false;

@@ -33,7 +33,6 @@ const SearchBooks = () => {
 			const response = await searchGoogleBooks(searchInput);
 			console.log(response.data);
 
-
 			if (response.status != 200) {
 				throw new Error('something went wrong!');
 			}

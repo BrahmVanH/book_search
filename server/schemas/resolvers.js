@@ -8,7 +8,7 @@
 // saveBook '/'
 // deleteBook '/books/:bookId'
 const { AuthenticationError } = require('apollo-server-express');
-const { Book, User } = require('../models');
+const { User } = require('../models');
 const { signToken } = require('../../../restful/server/utils/auth');
 
 const resolvers = {
