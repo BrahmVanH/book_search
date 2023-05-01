@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 import client from '../App';
 
-const GET_ME = gql`
+export const GET_ME = gql`
 	query user($username: ID!) {
 		me {
 			_id
@@ -19,13 +19,4 @@ const GET_ME = gql`
 	}
 `;
 
-// export const getMe = (token) => {
-// 	return client.query({
-// 		query: GET_ME,
-// 		context: {
-// 			headers: {
-// 				authorization: `Bearer ${token}`,
-// 			},
-// 		},
-// 	});
-// };
+
