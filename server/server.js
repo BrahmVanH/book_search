@@ -1,7 +1,9 @@
+require('dotenv').config();
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
 const { authMiddleware } = require('./utils/auth');
+console.log(process.env.AUTH_SECRET);
 
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
