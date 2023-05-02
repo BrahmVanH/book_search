@@ -29,12 +29,16 @@ class AuthService {
 
   getToken() {
     // Retrieves the user token from localStorage
-    return localStorage.getItem('id_token');
+    const token = localStorage.getItem('id_token');
+    // const user = localStorage.getItem('user');
+    
+    return token
   }
 
-  login(idToken) {
+  login(idToken, user) {
     // Saves user token to localStorage
     localStorage.setItem('id_token', idToken);
+    localStorage.setItem('user', user)
     window.location.assign('/');
   }
 

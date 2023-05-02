@@ -9,15 +9,19 @@ import { GET_ME } from '../utils/queries';
 import { DELETE_BOOK } from '../utils/mutations';
 
 const SavedBooks = () => {
-	const [userData, setUserData] = useState({});
+	const [userData, setUserData] = useState();
 	const { loading, data } = useQuery(GET_ME);
+	console.log(data);
 	const [deleteBook] = useMutation(DELETE_BOOK);
+	// const userData = data?.user || {};
 
 	useEffect(() => {
 		if (!loading && data) {
-			setUserData(data.me);
+			setUserData(data.user);
 		}
 	}, [loading, data]);
+
+	
 
 	const handleDeleteBook = async (bookId) => {
 		const token = Auth.loggedIn() ? Auth.getToken() : null;

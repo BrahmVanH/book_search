@@ -72,7 +72,7 @@ const SearchBooks = () => {
 		try {
 			const { data } = await saveBook({
 				variables: { bookData: { ...bookToSave } },
-				context: { user: { _id: token }}
+				context: token.user,
 			});
 			console.log(data);
 			console.log(bookToSave);

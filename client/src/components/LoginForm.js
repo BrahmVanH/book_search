@@ -19,6 +19,7 @@ const LoginForm = () => {
 
 	const handleFormSubmit = async (event) => {
 		event.preventDefault();
+		
 
 		// check if form has everything (as per react-bootstrap docs)
 		const form = event.currentTarget;
@@ -34,7 +35,7 @@ const LoginForm = () => {
 
 			console.log(data);
 			Auth.login(data.loginUser.token);
-			console.log(data.loginUser.token);
+			console.log(data.loginUser.user._id);
 		} catch (err) {
 			console.error(err);
 			setShowAlert(true);

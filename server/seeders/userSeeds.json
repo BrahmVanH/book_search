@@ -12,7 +12,18 @@
   {
     "username": "WhyTheLuckyStiff",
     "email": "wtls@techfriends.dev",
-    "password": "password03"
+    "password": "password03",
+    "savedBooks": [
+     {    
+    "authors": "George Orwell",
+    "description": "Nineteen Eighty-Four, often published as 1984, is a dystopian novel by English author George Orwell published in 1949.",
+    "bookId": "34",
+    "image": "https://covers.openlibrary.org/w/id/7222246-M.jpg",
+    "link": "https://openlibrary.org/books/OL7367203M/Nineteen_Eighty-Four",
+    "title": "Nineteen Eighty-Four"
+  }
+]
+    
   },
   {
     "username": "KentBeck",

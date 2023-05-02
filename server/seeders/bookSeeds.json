@@ -1,0 +1,50 @@
+[
+  {    
+    "authors": "George Orwell",
+    "description": "Nineteen Eighty-Four, often published as 1984, is a dystopian novel by English author George Orwell published in 1949.",
+    "bookId": "34",
+    "image": "https://covers.openlibrary.org/w/id/7222246-M.jpg",
+    "link": "https://openlibrary.org/books/OL7367203M/Nineteen_Eighty-Four",
+    "title": "Nineteen Eighty-Four"
+  },
+  {
+    "authors": 
+      "Margaret Atwood"
+    ,
+    "description": "The Handmaid's Tale is a dystopian novel by Canadian author Margaret Atwood, published in 1985.",
+    "bookId": "876",
+    "image": "https://covers.openlibrary.org/w/id/7222243-M.jpg",
+    "link": "https://openlibrary.org/books/OL9718686M/The_Handmaid's_Tale",
+    "title": "The Handmaid's Tale"
+  },
+  {
+    "authors": 
+      "Ray Bradbury"
+    ,
+    "description": "Fahrenheit 451 is a dystopian novel by American writer Ray Bradbury, published in 1953.",
+    "bookId": "4",
+    "image": "https://covers.openlibrary.org/w/id/7222245-M.jpg",
+    "link": "https://openlibrary.org/books/OL7441817M/Fahrenheit_451",
+    "title": "Fahrenheit 451"
+  },
+  {
+    "authors": 
+      "Aldous Huxley"
+    ,
+    "description": "Brave New World is a dystopian novel by English author Aldous Huxley, written in 1931 and published in 1932.",
+    "bookId": "16",
+    "image": "https://covers.openlibrary.org/w/id/7222250-M.jpg",
+    "link": "https://openlibrary.org/books/OL7886363M/Brave_New_World",
+    "title": "Brave New World"
+  },
+  {
+    "authors": 
+      "Lois Lowry"
+    ,
+    "description": "The Giver is a 1993 American young-adult dystopian novel by Lois Lowry. It is set in a society that at first appears to be utopian but is revealed to be dystopian as the story progresses.",
+    "bookId": "3930",
+    "image": "https://covers.openlibrary.org/w/id/7222251-M.jpg",
+    "link": "https://openlibrary.org/books/OL7353617M/The_Giver",
+    "title": "The Giver"
+  }
+]
