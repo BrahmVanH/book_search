@@ -52,13 +52,15 @@ const resolvers = {
 
 		saveBook: async (parent, { bookData }, { user }) => {
 			if (user) {
+				console.log({ user })
 				const updatedUser = await User.findOneAndUpdate(
 					{ _id: user._id },
 					{ $addToSet: { savedBooks: bookData } },
 					{ new: true, runValidators: true }
 				);
+				console.log(updatedUser);
 				return updatedUser;
-			}
+			} 
 			throw new AuthenticationError('You need to be logged in to save a book!');
 		},
 
