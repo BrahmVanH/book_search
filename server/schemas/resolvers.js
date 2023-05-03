@@ -1,12 +1,3 @@
-// BE SURE TO ADD VALIDATION EXPRESSION FOR EMAIL ADDRESS HERE
-// Replacing routers and controllers:
-
-// User controllers:
-// getSingleUser  '/me'
-// createUser '/'
-// login '/'
-// saveBook '/'
-// deleteBook '/books/:bookId'
 const { AuthenticationError } = require('apollo-server-express');
 const { User } = require('../models');
 const { signToken } = require('../utils/auth');
@@ -50,18 +41,18 @@ const resolvers = {
 			return { token, user };
 		},
 
-		saveBook: async (parent, { bookData }, { user }) => {
-			if (user) {
-				console.log({ user })
-				const updatedUser = await User.findOneAndUpdate(
-					{ _id: user._id },
-					{ $addToSet: { savedBooks: bookData } },
-					{ new: true, runValidators: true }
-				);
-				console.log(updatedUser);
-				return updatedUser;
-			} 
-			throw new AuthenticationError('You need to be logged in to save a book!');
+		saveBook: async (parent, { userId, bookData }) => {
+			const user = await User.findOneAndUpdate(
+				{ _id: userId },
+				{
+					$addToSet: { savedBooks: bookData },
+				},
+				{
+					new: true,
+					runValidators: true,
+				}
+			);
+			return user;
 		},
 
 		deleteBook: async (parent, { user, bookId }) => {
