@@ -9,7 +9,7 @@ import { GET_ME } from '../utils/queries';
 import { DELETE_BOOK } from '../utils/mutations';
 
 const SavedBooks = () => {
-	const [userData, setUserData] = useState();
+	const [userData, setUserData] = useState({});
 	const { loading, data } = useQuery(GET_ME);
 	console.log(data);
 	const [deleteBook] = useMutation(DELETE_BOOK);
@@ -17,7 +17,7 @@ const SavedBooks = () => {
 
 	useEffect(() => {
 		if (!loading && data) {
-			setUserData(data.user);
+			setUserData(data);
 		}
 	}, [loading, data]);
 
@@ -30,9 +30,11 @@ const SavedBooks = () => {
 			return false;
 		}
 
+		// const user = Auth.getProfile().data;
+
 		try {
 			await deleteBook({
-				variables: { bookId },
+				variables: { userId: userData._id, bookId },
 			});
 			// upon success, remove book's id from localStorage
 			removeBookId(bookId);

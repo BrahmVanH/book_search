@@ -76,11 +76,11 @@ const SearchBooks = () => {
 					bookData: bookToSave,
 				},
 			});
-			console.log(data);
+			console.log(data.savedBooks);
 			console.log(bookToSave);
 
 			// if book successfully saves to user's account, save book id to state
-			setSavedBookIds([...savedBookIds, bookToSave.bookId]);
+			setSavedBookIds([...savedBookIds, bookId]);
 		} catch (err) {
 			console.error(err);
 		}
