@@ -4,10 +4,8 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
 	Query: {
-		user: async (_, { id, username }) => {
-			const foundUser = await User.findOne({
-				$or: [{ _id: id }, { username: username }],
-			});
+		user: async (parent, { userId }) => {
+			const foundUser = await User.findOne({ _id: userId });
 
 			if (!foundUser) {
 				throw new Error('Cannot find user with that ID!');
@@ -55,15 +53,13 @@ const resolvers = {
 			return user;
 		},
 
-		deleteBook: async (parent, { user, bookId }) => {
+		deleteBook: async (parent, { userId, bookId }) => {
 			const updatedUser = await User.findOneAndUpdate(
-				{ _id: user._id },
+				{ _id: userId },
 				{ $pull: { savedBooks: { bookId: bookId } } },
 				{ new: true }
 			);
-			if (!updatedUser) {
-				throw new Error("Can't find user with that ID!");
-			}
+
 			return updatedUser;
 		},
 	},
