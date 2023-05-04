@@ -1,15 +1,20 @@
-// see SignupForm.js for comments
+// Import react and useState, useMutation hooks from react
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { Form, Button, Alert } from 'react-bootstrap';
 
+// Importing our pre-defined mutation
 import { LOGIN_USER } from '../utils/mutations';
+// Importing Auth to later retrieve user-token and user information
 import Auth from '../utils/auth';
 
+// Login form component to export
 const LoginForm = () => {
 	const [userFormData, setUserFormData] = useState({ email: '', password: '' });
 	const [validated] = useState(false);
 	const [showAlert, setShowAlert] = useState(false);
+
+	// Setting up our mutation
 	const [loginUser] = useMutation(LOGIN_USER);
 
 	const handleInputChange = (event) => {
@@ -28,19 +33,12 @@ const LoginForm = () => {
 		}
 
 		try {
+			// running the login mutation and saving the mutation response as an object
 			const { data } = await loginUser({
 				variables: { ...userFormData },
 			});
-
-			// let savedBookIds = [];
-
-			// data.loginUser.user.savedBooks.map(
-			// 	(book) => savedBookIds.push(book.bookId.toString())
-			// );
-
+			// Save user-token to 'log in'
 			Auth.login(data.loginUser.token);
-			// Auth.setLocalBookIds(savedBookIds);
-			// console.log(savedBookIds)
 		} catch (err) {
 			console.error(err);
 			setShowAlert(true);

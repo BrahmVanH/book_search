@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Col, Form, Button, Card, Row } from 'react-bootstrap';
-import { useMutation } from '@apollo/client';
 
+// Import Auth to later retrieve user-token and user information
 import Auth from '../utils/auth';
+
+// Import our pre-defined mutation and useMutation hook
+import { useMutation } from '@apollo/client';
 import { SAVE_BOOK } from '../utils/mutations';
+
+// Import our axios fetch to google books api
 import { searchGoogleBooks } from '../utils/axios';
 import { saveBookIds, getSavedBookIds } from '../utils/localStorage';
 
@@ -33,14 +38,17 @@ const SearchBooks = () => {
 		}
 
 		try {
+			// Google books api call
 			const response = await searchGoogleBooks(searchInput);
 
 			if (response.status !== 200) {
 				throw new Error('something went wrong!');
 			}
 
+			// Saving book array in API response to object
 			const { items } = await response.data;
 
+			// Map through array of books in object and indexing the data we need from each book
 			const bookData = items.map((book) => ({
 				bookId: book.id,
 				authors: book.volumeInfo.authors || ['No author to display'],
@@ -49,7 +57,7 @@ const SearchBooks = () => {
 				image: book.volumeInfo.imageLinks?.thumbnail || '',
 				link: book.volumeInfo.infoLink,
 			}));
-
+			// Saving indexed book information to object
 			setSearchedBooks(bookData);
 			setSearchInput('');
 		} catch (err) {
@@ -70,8 +78,11 @@ const SearchBooks = () => {
 		}
 
 		try {
+			// calling save mutation and saving response to an object
 			const { data } = await saveBook({
 				variables: {
+					// Using Auth to retrieve logged in user's information
+
 					userId: Auth.getProfile().data._id,
 					bookData: bookToSave,
 				},
