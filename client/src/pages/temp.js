@@ -12,24 +12,28 @@ const SavedBooks = () => {
 	const { loading, data } = useQuery(GET_ME, {
 		variables: { userId: Auth.getProfile().data._id },
 	});
-	console.log(data);
 	const [deleteBook] = useMutation(DELETE_BOOK);
 	// const userData = data?.user || {};
 
 	const userData = data?.user || {};
 
 	const handleDeleteBook = async (bookId) => {
+		
+		
 		const token = Auth.loggedIn() ? Auth.getToken() : null;
-
+		
 		if (!token) {
 			return false;
 		}
-
+		
 		// const user = Auth.getProfile().data;
-
+		
 		try {
+			const { __typename, ...deletedBook } = userData.savedBooks.find(
+				(book) => book.bookId === bookId
+			);
 			await deleteBook({
-				variables: { userId: userData._id, bookId },
+				variables: { userId: userData._id, bookData: deletedBook },
 			});
 			// upon success, remove book's id from localStorage
 			removeBookId(bookId);
