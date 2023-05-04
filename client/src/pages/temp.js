@@ -9,19 +9,14 @@ import { GET_ME } from '../utils/queries';
 import { DELETE_BOOK } from '../utils/mutations';
 
 const SavedBooks = () => {
-	const [userData, setUserData] = useState({});
-	const { loading, data } = useQuery(GET_ME);
+	const { loading, data } = useQuery(GET_ME, {
+		variables: { userId: Auth.getProfile().data._id },
+	});
 	console.log(data);
 	const [deleteBook] = useMutation(DELETE_BOOK);
 	// const userData = data?.user || {};
 
-	useEffect(() => {
-		if (!loading && data) {
-			setUserData(data);
-		}
-	}, [loading, data]);
-
-	
+	const userData = data?.user || {};
 
 	const handleDeleteBook = async (bookId) => {
 		const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -40,12 +35,6 @@ const SavedBooks = () => {
 			removeBookId(bookId);
 
 			// Optimistically update the user data to remove the deleted book from the list
-			setUserData((prevUserData) => ({
-				...prevUserData,
-				savedBooks: prevUserData.savedBooks.filter(
-					(book) => book.bookId !== bookId
-				),
-			}));
 		} catch (err) {
 			console.error(err);
 		}

@@ -44,43 +44,18 @@ export const SAVE_BOOK = gql`
 
 export const DELETE_BOOK = gql`
 	mutation deleteBook($userId: ID!, $bookData: BookInput!) {
-		deleteBook(userId: $userId, bookData: $bookId) {
-			user {
-				username
-				savedBooks {
-					book {
-						authors
-						description
-						bookId
-						image
-						link
-						title
-					}
-				}
+		deleteBook(userId: $userId, bookData: $bookData) {
+			_id
+			username
+			savedBooks {
+				authors
+				description
+				bookId
+				image
+				link
+				title
 			}
 		}
 	}
 `;
-// export const saveBook = (bookId, token) => {
-// 	return client.mutation({
-// 		mutation: SAVE_BOOK,
-// 		variables: { bookId },
-// 		context: {
-// 			headers: {
-// 				authorization: `Bearer ${token}`,
-// 			},
-// 		},
-// 	});
-// };
 
-// export const deleteBook = (bookId, token) => {
-// 	return client.mutation({
-// 		mutation: DELETE_BOOK,
-// 		variables: { bookId },
-// 		context: {
-// 			headers: {
-// 				authorization: `Bearer ${token}`,
-// 			},
-// 		},
-// 	});
-// };

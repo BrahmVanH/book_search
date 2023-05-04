@@ -48,6 +48,7 @@ const SearchBooks = () => {
 				title: book.volumeInfo.title,
 				description: book.volumeInfo.description,
 				image: book.volumeInfo.imageLinks?.thumbnail || '',
+				link: book.volumeInfo.infoLink,
 			}));
 
 			setSearchedBooks(bookData);
@@ -76,7 +77,7 @@ const SearchBooks = () => {
 					bookData: bookToSave,
 				},
 			});
-			console.log(data.savedBooks);
+			console.log(data.saveBook.savedBooks);
 			console.log(bookToSave);
 
 			// if book successfully saves to user's account, save book id to state

@@ -16,8 +16,7 @@ const SavedBooks = () => {
 		authorization: `Bearer:${token}`,
 	});
 
-	const userData = data?.user || {};
-	
+	const userData = data?.user || '';
 
 	// const getUserData = async () => {
 	// 	try {
@@ -43,19 +42,18 @@ const SavedBooks = () => {
 
 	const [deleteBook, { error }] = useMutation(DELETE_BOOK, {
 		authorization: `Bearer:${token}`,
-		variables: { bookId: bookId },
+		variables: { userId: Auth.getProfile().data._id, bookId: bookId },
 	});
 	// create function that accepts the book's mongo _id value as param and deletes the book from the database
 	const handleDeleteBook = async (bookId) => {
 		const token = Auth.loggedIn() ? Auth.getToken() : null;
-
 
 		if (!token) {
 			return false;
 		}
 
 		try {
-			const response = await deleteBook(bookId, token);
+			const response = await deleteBook(bookId);
 
 			if (!response.ok) {
 				throw new Error('something went wrong!');
@@ -86,14 +84,14 @@ const SavedBooks = () => {
 			</div>
 			<Container>
 				<h2 className='pt-5'>
-					{userData.savedBooks.length
-						? `Viewing ${userData.savedBooks.length} saved ${
-								userData.savedBooks.length === 1 ? 'book' : 'books'
+					{userData.user.savedBooks.length
+						? `Viewing ${userData.user.savedBooks.length} saved ${
+								userData.user.savedBooks.length === 1 ? 'book' : 'books'
 						  }:`
 						: 'You have no saved books!'}
 				</h2>
 				<Row>
-					{userData.savedBooks.map((book) => {
+					{userData.user.savedBooks.map((book) => {
 						return (
 							<Col md='4'>
 								<Card
