@@ -4,11 +4,15 @@ const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
 const { authMiddleware } = require('./utils/auth');
 
+
+// Importing pre-defined type definitions and handling functions for our data
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
+
+// Creating a new apollo server with our data definitions and handling functions
 const server = new ApolloServer({
 	typeDefs,
 	resolvers,
@@ -40,4 +44,5 @@ const startApolloServer = async (typeDefs, resolvers) => {
 	});
 };
 
+// Starting server
 startApolloServer(typeDefs, resolvers);

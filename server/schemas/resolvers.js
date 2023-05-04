@@ -2,6 +2,8 @@ const { AuthenticationError } = require('apollo-server-express');
 const { User } = require('../models');
 const { signToken } = require('../utils/auth');
 
+// Graphql resolvers to handle mutation and query parameter inputs
+
 const resolvers = {
 	Query: {
 		user: async (parent, { userId }) => {

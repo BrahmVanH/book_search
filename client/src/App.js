@@ -5,6 +5,8 @@ import SearchBooks from './pages/SearchBooks';
 import SavedBooks from './pages/SavedBooks';
 import Navbar from './components/Navbar';
 
+// Creating a new apollo client to communicate with back end 
+
 const client = new ApolloClient({
 	uri: 'http://localhost:3001/graphql',
 	cache: new InMemoryCache(),

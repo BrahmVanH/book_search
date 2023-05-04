@@ -1,5 +1,7 @@
 const { gql } = require('apollo-server-express');
 
+
+// Type definitions for all application data
 const typeDefs = gql`
 	type Book {
 		authors: [String]
@@ -24,10 +26,6 @@ const typeDefs = gql`
 		user: User
 	}
 
-	type Query {
-		user(userId: ID!): User
-	}
-
 	input BookInput {
 		authors: [String]
 		description: String
@@ -35,6 +33,10 @@ const typeDefs = gql`
 		image: String
 		link: String
 		title: String
+	}
+
+	type Query {
+		user(userId: ID!): User
 	}
 
 	type Mutation {
