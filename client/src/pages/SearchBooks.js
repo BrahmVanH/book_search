@@ -34,7 +34,6 @@ const SearchBooks = () => {
 
 		try {
 			const response = await searchGoogleBooks(searchInput);
-			console.log(response.data);
 
 			if (response.status !== 200) {
 				throw new Error('something went wrong!');
@@ -77,8 +76,6 @@ const SearchBooks = () => {
 					bookData: bookToSave,
 				},
 			});
-			console.log(data.saveBook.savedBooks);
-			console.log(bookToSave);
 
 			// if book successfully saves to user's account, save book id to state
 			setSavedBookIds([...savedBookIds, bookId]);

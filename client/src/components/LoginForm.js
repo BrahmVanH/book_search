@@ -32,7 +32,15 @@ const LoginForm = () => {
 				variables: { ...userFormData },
 			});
 
+			// let savedBookIds = [];
+
+			// data.loginUser.user.savedBooks.map(
+			// 	(book) => savedBookIds.push(book.bookId.toString())
+			// );
+
 			Auth.login(data.loginUser.token);
+			// Auth.setLocalBookIds(savedBookIds);
+			// console.log(savedBookIds)
 		} catch (err) {
 			console.error(err);
 			setShowAlert(true);
