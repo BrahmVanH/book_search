@@ -9,7 +9,6 @@ const db = require('./config/connection');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
-console.log('Creating new ApolloServer');
 const server = new ApolloServer({
 	typeDefs,
 	resolvers,
