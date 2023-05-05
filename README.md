@@ -1,56 +1,57 @@
 # Google Books Search Engine
 
-  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)]
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)]
 
-  
-  ## Description 
-  
-  This project is an example of the implimentation of GraphQL with Apollo CLient serving up a MongoDB back end application to a React client. The user can create an account, search for book titles, and save books to their own list for later reference.
-  
-  ## Table of Contents
+## Description
 
-  ⋆[Installation](#Installation)
-  ⋆[Usage](#Usage)
-  ⋆[Credits](#Credits)
-  ⋆[License](#License)
-  ⋆[Features](#Features)
-  ⋆[Contributions](#Contributions)
-  ⋆[Test](#Contributions)
+This project is an example of the implementation of GraphQL with Apollo CLient serving up a MongoDB back end application to a React client. The user can create an account, search for book titles, and save books to their own list for later reference.
 
-  ## Installation 
+GitHub Repo: https://github.com/BrahmVanH/book_search
+Deployed Application: https://tranquil-falls-19048.herokuapp.com/
+![Screenshot](./google_books-screenshot.png)
 
-  For development, fork repository and open directory in IDE. Change 'example.env' to '.env' and add an authorization secret for the Auth utility.
+## Table of Contents
 
-  ## Usage
+⋆[Installation](#Installation)
+⋆[Usage](#Usage)
+⋆[Credits](#Credits)
+⋆[License](#License)
+⋆[Features](#Features)
+⋆[Contributions](#Contributions)
+⋆[Test](#Contributions)
 
-  For development, navigate to the project root folder and enter 'npm install' to install project dependencies. Enter 'npm run seed' to seed sample user and book data. Enter 'npm run' build to bundle front end. Enter 'npm run develop' to start front and back end servers. Application will open automatically in default browser.
+## Installation
 
-  ## Credits 
+For development, fork repository and open directory in IDE. Change 'example.env' to '.env' and add an authorization secret for the Auth utility.
 
-  MSU Bootcamp instructional team for front-end design
+## Usage
 
-  ## License
+For development, navigate to the project root folder and enter 'npm install' to install project dependencies. Enter 'npm run seed' to seed sample user and book data. Enter 'npm run' build to bundle front end. Enter 'npm run develop' to start front and back end servers. Application will open automatically in default browser.
 
-  (https://opensource.org/licenses/MIT)
-  
+## Credits
 
-  ## Features
+MSU Bootcamp instructional team for front-end design
 
-  N/A
+## License
 
-  ## Contributions
+(https://opensource.org/licenses/MIT)
 
-  N/A
+## Features
 
-  ## Test
+N/A
 
-  N/A
+## Contributions
 
-  ## Questions
+N/A
 
-  If you have any questions about the project you can reach out to me via email or GitHub with the information below. 
+## Test
 
-  >Email: brahm@brahmvanhouzen.studio
+N/A
 
-  >GitHub: [BrahmVanH](https://github.com/BrahmVanH)
+## Questions
 
+If you have any questions about the project you can reach out to me via email or GitHub with the information below.
+
+> Email: brahm@brahmvanhouzen.studio
+
+> GitHub: [BrahmVanH](https://github.com/BrahmVanH)
