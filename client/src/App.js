@@ -8,7 +8,7 @@ import Navbar from './components/Navbar';
 // Creating a new apollo client to communicate with back end 
 
 const client = new ApolloClient({
-	uri: 'http://localhost:3001/graphql',
+	uri: '/graphql',
 	cache: new InMemoryCache(),
 });
 
